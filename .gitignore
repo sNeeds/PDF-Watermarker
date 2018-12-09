@@ -1,2 +1,5 @@
 venv/
 .idea/
+input/
+output/
+*.pdf
