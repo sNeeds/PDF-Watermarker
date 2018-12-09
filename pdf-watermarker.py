@@ -1,6 +1,6 @@
+from os import walk
 from reportlab.pdfgen import canvas
 from PyPDF2 import PdfFileWriter, PdfFileReader
-from os import walk
 
 
 def get_pdf_list():
@@ -30,7 +30,7 @@ for booklet_name in pdf_list:
 
     # Go through all the input file pages to add a watermark to them
     for page_number in range(page_count):
-        print("Watermarking page {} of {}".format(page_number, page_count))
+        print(booklet_name + ": Watermarking page {} of {}".format(page_number, page_count))
         # merge the watermark with the page
         input_page = input_file.getPage(0)
         input_page.mergePage(watermark.getPage(0))
