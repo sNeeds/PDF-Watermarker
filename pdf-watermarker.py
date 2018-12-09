@@ -1,5 +1,14 @@
 from reportlab.pdfgen import canvas
 from PyPDF2 import PdfFileWriter, PdfFileReader
+from os import walk
+
+def get_pdf_list() :
+    f = []
+    for (dirpath, dirnames, filenames) in walk("./input"):
+        f.extend(filenames)
+        break
+    return f
+
 
 # Create the watermark from an image
 c = canvas.Canvas('watermark.pdf')
@@ -9,6 +18,9 @@ c.drawImage('sneeds-logo.png', 2, 2, width=30, height=30, mask='auto')
 c.drawString(37, 12, "SNEEDS.IR")
 c.save()
 
+
+pdf_list = get_pdf_list()
+print(pdf_list)
 watermark = PdfFileReader(open("watermark.pdf", "rb"))
 output_file = PdfFileWriter()
 input_file = PdfFileReader(open("test.pdf", "rb"))
@@ -23,8 +35,7 @@ for page_number in range(page_count):
     input_page.mergePage(watermark.getPage(0))
     # add page from input file to output document
     output_file.addPage(input_page)
-    if page_number > 5:
-        break
+
 
 # finally, write "output" to document-output.pdf
 with open("document-output.pdf", "wb") as outputStream:
