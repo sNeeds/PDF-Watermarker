@@ -11,14 +11,14 @@ def get_pdf_list():
     return f
 
 
-canva_width = 566
+canvas_width = 566
 
 # Create the watermark from an image
 c = canvas.Canvas('watermark.pdf')
 
 # Draw the image at x, y. I positioned the x,y to be where i like here
-c.drawImage('sneeds-logo.png', canva_width-4, 2, width=30, height=30, mask='auto', preserveAspectRatio=True)
-c.drawString(canva_width-73, 12, "SNEEDS.IR")
+c.drawImage('sneeds-logo.png', canvas_width-4, 2, width=30, height=30, mask='auto', preserveAspectRatio=True)
+c.drawString(canvas_width-73, 12, "SNEEDS.IR")
 c.save()
 
 pdf_list = get_pdf_list()
