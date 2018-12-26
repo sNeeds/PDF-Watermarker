@@ -34,7 +34,7 @@ for booklet_name in pdf_list:
     for page_number in range(page_count):
         print(booklet_name + ": Watermarking page {} of {}".format(page_number, page_count))
         # merge the watermark with the page
-        input_page = input_file.getPage(0)
+        input_page = input_file.getPage(page_number)
         input_page.mergePage(watermark.getPage(0))
         # add page from input file to output document
         output_file.addPage(input_page)
