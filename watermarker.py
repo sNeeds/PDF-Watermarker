@@ -20,13 +20,13 @@ canvas_width = 566
 
 # Create the watermark from an image
 c = canvas.Canvas('bin/right-watermark.pdf')
-c.drawImage('bin/sneeds-logo.png', canvas_width - 4, 2, width=30, height=30,
+c.drawImage('bin/logo.png', canvas_width - 4, 2, width=30, height=30,
             mask='auto', preserveAspectRatio=True)
 c.drawString(canvas_width - 73, 12, "SNEEDS.IR")
 c.save()
 
 c = canvas.Canvas('bin/left-watermark.pdf')
-c.drawImage('bin/sneeds-logo.png', 2, 2, width=30, height=30, mask='auto')
+c.drawImage('bin/logo.png', 2, 2, width=30, height=30, mask='auto')
 c.drawString(37, 12, "SNEEDS.IR")
 c.save()
 
