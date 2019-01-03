@@ -19,13 +19,14 @@ def get_pdf_list():
 canvas_width = 566
 
 # Create the watermark from an image
-c = canvas.Canvas('right-watermark.pdf')
-c.drawImage('sneeds-logo.png', canvas_width - 4, 2, width=30, height=30, mask='auto', preserveAspectRatio=True)
+c = canvas.Canvas('bin/right-watermark.pdf')
+c.drawImage('bin/sneeds-logo.png', canvas_width - 4, 2, width=30, height=30,
+            mask='auto', preserveAspectRatio=True)
 c.drawString(canvas_width - 73, 12, "SNEEDS.IR")
 c.save()
 
-c = canvas.Canvas('left-watermark.pdf')
-c.drawImage('sneeds-logo.png', 2, 2, width=30, height=30, mask='auto')
+c = canvas.Canvas('bin/left-watermark.pdf')
+c.drawImage('bin/sneeds-logo.png', 2, 2, width=30, height=30, mask='auto')
 c.drawString(37, 12, "SNEEDS.IR")
 c.save()
 
@@ -40,7 +41,7 @@ if left_pdf_list[0] == ".DS_Store":
 
 print("\nLEFT PDFs : ")
 for booklet_name in right_pdf_list:
-    watermark = PdfFileReader(open("right-watermark.pdf", "rb"))
+    watermark = PdfFileReader(open("bin/right-watermark.pdf", "rb"))
     output_file = PdfFileWriter()
     input_file = PdfFileReader(open("right-watermarker/" + booklet_name, "rb"))
 
@@ -60,7 +61,7 @@ for booklet_name in right_pdf_list:
 
 print("\nLEFT PDFs : ")
 for booklet_name in left_pdf_list:
-    watermark = PdfFileReader(open("left-watermark.pdf", "rb"))
+    watermark = PdfFileReader(open("bin/left-watermark.pdf", "rb"))
     output_file = PdfFileWriter()
     input_file = PdfFileReader(open("left-watermarker/" + booklet_name, "rb"))
 
