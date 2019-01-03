@@ -17,3 +17,4 @@ $ python watermarker.py
 
 ## License
 - Copyright 2019 © <a href="http://sneeds.ir" target="_blank">sNeeds</a>.
+
