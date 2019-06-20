@@ -33,48 +33,58 @@ c.save()
 right_pdf_list, left_pdf_list = get_pdf_list()
 
 # Solving mac problem
-if right_pdf_list[0] == ".DS_Store":
-    del (right_pdf_list[0])
+# if right_pdf_list[0] == ".DS_Store":
+#     del (right_pdf_list[0])
 
-if left_pdf_list[0] == ".DS_Store":
-    del (left_pdf_list[0])
+# if left_pdf_list[0] == ".DS_Store":
+#     del (left_pdf_list[0])
 
-print("\nLEFT PDFs : ")
+print("\nRIGHT PDFs : ")
 for booklet_name in right_pdf_list:
-    watermark = PdfFileReader(open("bin/right-watermark.pdf", "rb"))
-    output_file = PdfFileWriter()
-    input_file = PdfFileReader(open("right-watermarker/" + booklet_name, "rb"))
+    try:
+        watermark = PdfFileReader(open("bin/right-watermark.pdf", "rb"))
+        output_file = PdfFileWriter()
+        input_file = PdfFileReader(
+            open("right-watermarker/" + booklet_name, "rb"))
 
-    page_count = input_file.getNumPages()
+        page_count = input_file.getNumPages()
 
-    # Go through all the left-watermarker file pages to add a watermark to them
-    for page_number in range(page_count):
-        print(booklet_name + ": Watermarking page {} of {}".format(page_number, page_count - 1))
+        # Go through all the left-watermarker file pages to add a watermark to them
+        for page_number in range(page_count):
+            print(
+                booklet_name + ": Watermarking page {} of {}".format(page_number, page_count - 1))
 
-        input_page = input_file.getPage(page_number)
-        input_page.mergePage(watermark.getPage(0))
+            input_page = input_file.getPage(page_number)
+            input_page.mergePage(watermark.getPage(0))
 
-        output_file.addPage(input_page)
+            output_file.addPage(input_page)
 
-    with open("output/" + booklet_name, "wb") as outputStream:
-        output_file.write(outputStream)
+        with open("output/" + booklet_name, "wb") as outputStream:
+            output_file.write(outputStream)
+    except:
+        print("Can't watermark one PDF.")
 
 print("\nLEFT PDFs : ")
 for booklet_name in left_pdf_list:
-    watermark = PdfFileReader(open("bin/left-watermark.pdf", "rb"))
-    output_file = PdfFileWriter()
-    input_file = PdfFileReader(open("left-watermarker/" + booklet_name, "rb"))
+    try:
+        watermark = PdfFileReader(open("bin/left-watermark.pdf", "rb"))
+        output_file = PdfFileWriter()
+        input_file = PdfFileReader(
+            open("left-watermarker/" + booklet_name, "rb"))
 
-    page_count = input_file.getNumPages()
+        page_count = input_file.getNumPages()
 
-    # Go through all the left-watermarker file pages to add a watermark to them
-    for page_number in range(page_count):
-        print(booklet_name + ": Watermarking page {} of {}".format(page_number, page_count - 1))
+        # Go through all the left-watermarker file pages to add a watermark to them
+        for page_number in range(page_count):
+            print(
+                booklet_name + ": Watermarking page {} of {}".format(page_number, page_count - 1))
 
-        input_page = input_file.getPage(page_number)
-        input_page.mergePage(watermark.getPage(0))
+            input_page = input_file.getPage(page_number)
+            input_page.mergePage(watermark.getPage(0))
 
-        output_file.addPage(input_page)
+            output_file.addPage(input_page)
 
-    with open("output/" + booklet_name, "wb") as outputStream:
-        output_file.write(outputStream)
+        with open("output/" + booklet_name, "wb") as outputStream:
+            output_file.write(outputStream)
+    except:
+        print("Can't watermark one PDF.")
